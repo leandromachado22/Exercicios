@@ -1,0 +1,92 @@
+/******************************************************************************
+ * Desafio: Posicionando Navios no Tabuleiro (Batalha Naval) - Nível Básico
+ *
+ * Descrição: Este programa cria um tabuleiro simplificado de Batalha Naval,
+ * inicializa-o como água (valor 0), define dois navios de tamanho fixo 3
+ * (um horizontal e outro vertical) usando vetores, posiciona-os na matriz do
+ * tabuleiro com o valor 3 e exibe o resultado final no console.
+ *
+ * Requisitos Atendidos:
+ * 1. Representação do Tabuleiro (Matriz 10x10 inicializada com 0).
+ * 2. Definição e Posicionamento de Navios (Um horizontal, um vertical de tam 3).
+ * 3. Validação simplificada (garantindo que cabem e não se sobrepõem via código).
+ * 4. Exibição clara do Tabuleiro.
+ * 5. Requisitos Não Funcionais: Comentários detalhados, nomes descritivos.
+ ******************************************************************************/
+
+#include <stdio.h>
+
+// Definição de Constantes para facilitar manutenção e leitura do código
+#define TAMANHO_TABULEIRO 10
+#define TAMANHO_NAVIO 3
+
+int main() {
+    // === ETAPA 1: REPRESENTAR O TABULEIRO ===
+    
+    // Declaração da matriz bidimensional para o tabuleiro (10x10)
+    int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+    
+    // Variáveis auxiliares para percorrer loops
+    int i, j;
+
+    // Inicialização de todas as posições do tabuleiro com 0 (representando água)
+    // Utilização de loops aninhados para percorrer linhas e colunas
+    for (i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (j = 0; j < TAMANHO_TABULEIRO; j++) {
+            tabuleiro[i][j] = 0;
+        }
+    }
+
+    // === ETAPA 2: POSICIONAR OS NAVIOS ===
+
+    // Declaração e inicialização de dois vetores unidimensionais para representar os navios
+    // Conforme instrução, o valor 3 representa uma parte do navio.
+    int navioHorizontal[TAMANHO_NAVIO] = {3, 3, 3};
+    int navioVertical[TAMANHO_NAVIO] = {3, 3, 3};
+
+    // Definição das coordenadas iniciais de cada navio diretamente no código (nível básico)
+    // Nota: Os índices do tabuleiro vão de 0 a 9.
+    int inicio_n1_linha = 1; // Linha inicial do Navio 1
+    int inicio_n1_coluna = 1; // Coluna inicial do Navio 1
+
+    int inicio_n2_linha = 4; // Linha inicial do Navio 2
+    int inicio_n2_coluna = 6; // Coluna inicial do Navio 2
+
+    // -- Validação e Posicionamento do Navio 1 (Horizontal) --
+    // O programador escolheu coordenadas que cabem no tabuleiro e não se sobrepõem.
+    
+    // Loop para copiar os valores do vetor navioHorizontal para a matriz tabuleiro
+    // Incrementa a COLUNA para posicionar horizontalmente
+    for (j = 0; j < TAMANHO_NAVIO; j++) {
+        // tabuleiro[linha_fixa][coluna_que_avanca]
+        tabuleiro[inicio_n1_linha][inicio_n1_coluna + j] = navioHorizontal[j];
+    }
+
+    // -- Validação e Posicionamento do Navio 2 (Vertical) --
+    // Loop para copiar os valores do vetor navioVertical para a matriz tabuleiro
+    // Incrementa a LINHA para posicionar verticalmente
+    for (i = 0; i < TAMANHO_NAVIO; i++) {
+        // tabuleiro[linha_que_avanca][coluna_fixa]
+        tabuleiro[inicio_n2_linha + i][inicio_n2_coluna] = navioVertical[i];
+    }
+
+    // === ETAPA 3: EXIBIR O TABULEIRO ===
+
+    printf("\nTABULEIRO DE BATALHA NAVAL (Nivel Basico)\n");
+    printf("----------------------------------------\n");
+    printf("Legenda: 0 = Agua, 3 = Parte de Navio\n\n");
+
+    // Utilização de loops aninhados e printf para exibir a matriz completa no console
+    for (i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (j = 0; j < TAMANHO_TABULEIRO; j++) {
+            // Imprime o valor da posição e um espaço como separador para visualização clara
+            printf("%d ", tabuleiro[i][j]);
+        }
+        // Ao final de cada linha da matriz, imprime uma nova linha para organizar a saída
+        printf("\n");
+    }
+    
+    printf("----------------------------------------\n");
+
+    return 0; // Indica que o programa finalizou com sucesso
+}
