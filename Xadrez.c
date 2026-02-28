@@ -31,5 +31,24 @@ int main() {
     } while (casas_rainha < 8);
     printf("\n");
 
+    // 4. Movimento do Cavalo em "L"
+    printf("--- Movimento do Cavalo ---\n");
+
+    int movimentos_baixo = 2;
+    int movimentos_esquerda = 1;
+
+    for (int i = 0; i < movimentos_baixo; i++) {
+        printf("Baixo\n");
+
+        if (i == movimentos_baixo - 1) { 
+            int j = 0;
+            
+            while (j < movimentos_esquerda) {
+                printf("Esquerda\n");
+                j++;
+            }
+        }
+    }
+                                                                                                                                                                    printf("\n"); // Linha em branco para separar a saída (caso haja mais código no futuro)
     return 0;
 }
